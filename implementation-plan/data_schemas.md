@@ -10,7 +10,7 @@ Creatures are the main entities in the game that players will collect and battle
 - `name` (string, required): The display name of the creature (e.g., `Lion`).
 - `description` (string, required): A brief description of the creature.
 - `types` (list of strings, required): A list of type IDs that the creature belongs to (e.g., `['mammal', 'carnivore']`).
-- `base_stats` (object, required): The base statistics of the creature.
+- `base_stats` (object, required): The base statistics of the creature. May contain additional stats such as MP, MP_regen.
   - `HP` (float, required): The base health points.
   - `HP_regen` (float, required): The base health points regenerated per second.
   - `ST` (float, required): The base stamina.
