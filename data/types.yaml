@@ -1,0 +1,57 @@
+- id: normal
+  name: Normal
+  strengths: []
+  weaknesses: []
+  immunities: []
+
+- id: mammal
+  name: Mammal
+  strengths:
+    - insect
+  weaknesses:
+    - poison
+  immunities: []
+
+- id: carnivore
+  name: Carnivore
+  strengths:
+    - herbivore
+  weaknesses: []
+  immunities: []
+
+- id: reptile
+  name: Reptile
+  strengths:
+    - insect
+  weaknesses:
+    - cold
+  immunities: []
+
+- id: herbivore
+  name: Herbivore
+  strengths: []
+  weaknesses:
+    - carnivore
+  immunities: []
+
+- id: insect
+  name: Insect
+  strengths: []
+  weaknesses:
+    - mammal
+    - reptile
+  immunities: []
+
+- id: poison
+  name: Poison
+  strengths:
+    - mammal
+  weaknesses: []
+  immunities: []
+
+- id: cold
+  name: Cold
+  strengths:
+    - reptile
+  weaknesses: []
+  immunities: []
