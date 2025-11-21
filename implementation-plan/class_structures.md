@@ -12,10 +12,10 @@ The `Creature` class represents a single creature in the game.
 *   `name` (str): The display name of the creature.
 *   `description` (str): A brief description of the creature.
 *   `types` (list of `Type`): A list of `Type` objects that the creature belongs to.
-*   `stats` (dict): A dictionary of the creature's current stats (e.g., `{'hp': 100, 'hp_regen': 1, 'st': 100, 'st_regen': 5, 'attack': 90, 'defense': 70, 'speed': 100, 'accuracy': 100, 'evasion': 100}`).
+*   `stats` (dict): A dictionary of the creature's current stats (e.g., `{'HP': 100, 'HP_regen': 1, 'ST': 100, 'ST_regen': 5, 'attack': 90, 'defense': 70, 'speed': 100, 'accuracy': 100, 'evasion': 100}`).
 *   `moves` (list of `Move`): A list of `Move` objects that the creature can use.
-*   `current_hp` (int): The creature's current health points.
-*   `current_st` (int): The creature's current stamina.
+*   `current_HP` (float): The creature's current health points.
+*   `current_ST` (float): The creature's current stamina.
 
 **Methods:**
 
@@ -34,11 +34,11 @@ The `Move` class represents a move that a creature can use.
 *   `name` (str): The display name of the move.
 *   `description` (str): A brief description of the move.
 *   `type` (`Type`): The `Type` object of the move.
-*   `damage` (int): The base damage of the move.
-*   `penetration` (int): The amount of defense the move ignores.
-*   `accuracy` (int): The base accuracy of the move.
-*   `cost` (dict): The resource cost of the move (e.g., `{'st': 25}`).
-*   `cooldown` (int): The base cooldown of the move in seconds.
+*   `damage` (float): The base damage of the move.
+*   `penetration` (float): The amount of defense the move ignores.
+*   `accuracy` (float): The base accuracy of the move.
+*   `cost` (dict): The resource cost of the move (e.g., `{'ST': 25}`).
+*   `cooldown` (float): The base cooldown of the move in seconds.
 *   `effect` (str): The ID of a status effect to apply.
 
 ## `Type`
@@ -49,9 +49,7 @@ The `Type` class represents a type in the game.
 
 *   `id` (str): The unique identifier for the type.
 *   `name` (str): The display name of the type.
-*   `effective_against` (list of `str`): A list of type IDs that this type is strong against.
-*   `ineffective_against` (list of `str`): A list of type IDs that this type is weak against.
-*   `immune_against` (list of `str`): A list of type IDs that this type is immune to.
+*   `effectiveness` (dict): Maps type id to effectiveness object against that type (e.g., `{'water': Effective, 'fire': Ineffective, 'ground': Immune}`).
 
 **Methods:**
 
