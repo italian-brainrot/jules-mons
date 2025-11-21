@@ -51,16 +51,12 @@ Type effectiveness will be defined in the `types.yaml` file.
 **Example `types.yaml`:**
 
 ```yaml
-- id: fire
-  name: Fire
-  effective_against:
-    - grass
-    - ice
-  ineffective_against:
-    - water
-    - rock
-  immune_against:
-    - null # No immunities in this example
+- id: electric
+  name: Electric
+  effectiveness:
+    - water: effective
+    - grass: ineffective
+    - ground: immune
 ```
 
 ### Accuracy/Evasion Formula
