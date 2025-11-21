@@ -11,15 +11,15 @@ Creatures are the main entities in the game that players will collect and battle
 - `description` (string, required): A brief description of the creature.
 - `types` (list of strings, required): A list of type IDs that the creature belongs to (e.g., `['mammal', 'carnivore']`).
 - `base_stats` (object, required): The base statistics of the creature.
-  - `hp` (integer, required): The base health points.
-  - `hp_regen` (integer, required): The base health points regenerated per second.
-  - `st` (integer, required): The base stamina.
-  - `st_regen` (integer, required): The base stamina regenerated per second.
-  - `attack` (integer, required): The base attack power.
-  - `defense` (integer, required): The base defense power.
-  - `speed` (integer, required): The base speed.
-  - `accuracy` (integer, required): The base accuracy.
-  - `evasion` (integer, required): The base evasion.
+  - `hp` (float, required): The base health points.
+  - `hp_regen` (float, required): The base health points regenerated per second.
+  - `st` (float, required): The base stamina.
+  - `st_regen` (float, required): The base stamina regenerated per second.
+  - `attack` (float, required): The base attack power.
+  - `defense` (float, required): The base defense power.
+  - `speed` (float, required): The base speed.
+  - `accuracy` (float, required): The base accuracy.
+  - `evasion` (float, required): The base evasion.
 - `moves` (list of strings, required): A list of move IDs that the creature can learn.
 
 **Example:**
@@ -33,7 +33,7 @@ Creatures are the main entities in the game that players will collect and battle
     - carnivore
   base_stats:
     hp: 100
-    hp_regen: 1
+    hp_regen: 0.5
     st: 100
     st_regen: 5
     attack: 90
@@ -55,12 +55,12 @@ Moves are the actions that creatures can perform in battle.
 - `name` (string, required): The display name of the move (e.g., `Bite`).
 - `description` (string, required): A brief description of the move.
 - `type` (string, required): The type ID of the move (e.g., `normal`).
-- `damage` (integer, required): The base damage of the move.
-- `penetration` (integer, required): The amount of defense the move ignores.
-- `accuracy` (integer, required): The base accuracy of the move.
+- `damage` (float, required): The base damage of the move.
+- `penetration` (float, required): The amount of defense the move ignores.
+- `accuracy` (float, required): The base accuracy of the move.
 - `cost` (object, required): The resource cost of the move.
-  - `<resource_name>` (integer): The amount of the resource the move costs.
-- `cooldown` (integer, required): The base cooldown of the move in seconds.
+  - `<resource_name>` (float): The amount of the resource the move costs.
+- `cooldown` (float, required): The base cooldown of the move in seconds.
 - `effect` (string, optional): Any special effect the move has (e.g., `poison`).
 
 **Example:**
