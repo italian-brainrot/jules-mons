@@ -59,7 +59,7 @@ Moves are the actions that creatures can perform in battle.
 - `penetration` (float, required): The amount of defense the move ignores.
 - `accuracy` (float, required): The base accuracy of the move.
 - `cost` (object, required): The resource cost of the move.
-  - `<resource_name>` (float): The amount of the resource the move costs.
+  - `<resource_name>` (float): The amount of the resource (e.g. stamina, mana, health) the move costs.
 - `cooldown` (float, required): The base cooldown of the move in seconds.
 - `effect` (string, optional): Any special effect the move has (e.g., `poison`).
 
