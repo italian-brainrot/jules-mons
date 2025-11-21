@@ -12,9 +12,14 @@ Creatures are the main entities in the game that players will collect and battle
 - `types` (list of strings, required): A list of type IDs that the creature belongs to (e.g., `['mammal', 'carnivore']`).
 - `base_stats` (object, required): The base statistics of the creature.
   - `hp` (integer, required): The base health points.
+  - `hp_regen` (integer, required): The base health points regenerated per second.
+  - `st` (integer, required): The base stamina.
+  - `st_regen` (integer, required): The base stamina regenerated per second.
   - `attack` (integer, required): The base attack power.
   - `defense` (integer, required): The base defense power.
   - `speed` (integer, required): The base speed.
+  - `accuracy` (integer, required): The base accuracy.
+  - `evasion` (integer, required): The base evasion.
 - `moves` (list of strings, required): A list of move IDs that the creature can learn.
 
 **Example:**
@@ -27,10 +32,15 @@ Creatures are the main entities in the game that players will collect and battle
     - mammal
     - carnivore
   base_stats:
-    hp: 80
+    hp: 100
+    hp_regen: 1
+    st: 100
+    st_regen: 5
     attack: 90
     defense: 70
     speed: 100
+    accuracy: 100
+    evasion: 100
   moves:
     - roar
     - bite
@@ -45,9 +55,12 @@ Moves are the actions that creatures can perform in battle.
 - `name` (string, required): The display name of the move (e.g., `Bite`).
 - `description` (string, required): A brief description of the move.
 - `type` (string, required): The type ID of the move (e.g., `normal`).
-- `power` (integer, required): The power of the move.
-- `accuracy` (integer, required): The accuracy of the move (0-100).
-- `pp` (integer, required): The power points of the move (how many times it can be used).
+- `damage` (integer, required): The base damage of the move.
+- `penetration` (integer, required): The amount of defense the move ignores.
+- `accuracy` (integer, required): The base accuracy of the move.
+- `cost` (object, required): The resource cost of the move.
+  - `<resource_name>` (integer): The amount of the resource the move costs.
+- `cooldown` (integer, required): The base cooldown of the move in seconds.
 - `effect` (string, optional): Any special effect the move has (e.g., `poison`).
 
 **Example:**
@@ -57,9 +70,12 @@ Moves are the actions that creatures can perform in battle.
   name: Bite
   description: A powerful bite attack.
   type: normal
-  power: 60
+  damage: 60
+  penetration: 10
   accuracy: 100
-  pp: 25
+  cost:
+    st: 25
+  cooldown: 5
 ```
 
 ## Types
@@ -68,18 +84,20 @@ Types define the elemental properties of creatures and moves, determining their 
 
 - `id` (string, required): A unique identifier for the type (e.g., `mammal`).
 - `name` (string, required): The display name of the type (e.g., `Mammal`).
-- `strengths` (list of strings, optional): A list of type IDs that this type is strong against.
-- `weaknesses` (list of strings, optional): A list of type IDs that this type is weak against.
-- `immunities` (list of strings, optional): A list of type IDs that this type is immune to.
+- `effective_against` (list of strings, optional): A list of type IDs that this type is strong against.
+- `ineffective_against` (list of strings, optional): A list of type IDs that this type is weak against.
+- `immune_against` (list of strings, optional): A list of type IDs that this type is immune to.
 
 **Example:**
 
 ```yaml
-- id: mammal
-  name: Mammal
-  strengths:
-    - insect
-  weaknesses:
-    - poison
-  immunities: []
+- id: fire
+  name: Fire
+  effective_against:
+    - grass
+    - ice
+  ineffective_against:
+    - water
+    - rock
+  immune_against: []
 ```
