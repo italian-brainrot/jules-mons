@@ -31,29 +31,43 @@ A battle is initiated by calling the `Game.start_battle()` method, which creates
 
 ### The `Battle` Class
 
-The `Battle` class manages the state of a single battle, including the parties, the active creatures, and the turn number.
+The `Battle` class manages the state of a single battle, including the parties, the active creatures, and a timeline of events.
 
-### Turn-Based Mechanics
+### Timeline-Based Mechanics
 
-The battle is turn-based. In each turn:
+Instead of a traditional turn-based system, the battle will use a timeline to manage actions. This creates a more dynamic, continuous-time feel.
 
-1.  The player is prompted to choose a move for their active creature.
-2.  The opponent's move is determined by a simple AI (for now, it will choose a random move).
-3.  The turn order is determined by the speed of the active creatures. The creature with the higher speed goes first.
-4.  The moves are executed, and the damage is calculated.
-5.  The game state is updated, and the results of the turn are displayed to the player.
+1.  At the start of the battle, both active creatures are able to act immediately.
+2.  When a creature uses a move, an "action_ready" event for that creature is added to the timeline. The time of this event is calculated based on the move's cooldown and the creature's speed (`current_time + move.cooldown / creature.speed`).
+3.  The game loop continuously checks the timeline for the next event.
+4.  If an event is due, it is executed. For an "action_ready" event, the creature is allowed to choose its next move.
+5.  Other events, such as status effect damage (e.g., poison ticks) and HP/ST regeneration, will also be added to the timeline.
+
+This system allows faster creatures to act multiple times before a slower creature can act once.
 
 ### Damage Calculation
 
-The damage calculation formula will be a simplified version of the one used in Pokémon:
+The damage formula is designed to be strategic and account for various factors.
 
-`damage = (((2 * level / 5 + 2) * power * attack / defense) / 50 + 2) * type_multiplier`
+`damage = (attacker.attack * move.damage) / (2 ** ((receiver.defense - move.penetration) / 100)) * type_multiplier * other_multipliers`
 
-For the initial version, we will simplify this to:
+*   **`type_multiplier`**: Calculated based on the move's type and the receiver's types (2x for effective, 0.5x for ineffective, 0x for immune).
+*   **`other_multipliers`**:  Includes effects like critical hits (1.5x damage) and status effect modifiers.
 
-`damage = (power * attack / defense) * type_multiplier`
+### Hit Chance Calculation
 
-The `type_multiplier` is determined by the move's type and the target creature's types.
+Whether a move hits is determined by the following formula:
+
+`hit_chance = move.accuracy * (attacker.accuracy / receiver.evasion)`
+
+A random number is generated to see if the attack is successful based on this percentage.
+
+### Battle Effects
+
+The engine will support various battle effects as defined in `implementation-plan/effects.md`, including:
+*   **Status Effects:** Poison, burn, etc.
+*   **Stat Modifiers:** Buffs and debuffs.
+*   **Critical Hits:** Random chance for extra damage.
 
 ### Battle End
 
@@ -61,7 +75,7 @@ A battle ends when all the creatures in one of the parties have fainted (i.e., t
 
 ## 5. Player Input
 
-In the terminal version, player input will be handled through the command line. The game will prompt the player for input (e.g., "Choose a move:") and wait for them to enter a command.
+In the terminal version, player input will be handled through the command line. The game will prompt the player for input when one of their creatures is ready to act.
 
 ## 6. Rendering
 
