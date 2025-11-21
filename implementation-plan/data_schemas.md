@@ -84,20 +84,16 @@ Types define the elemental properties of creatures and moves, determining their 
 
 - `id` (string, required): A unique identifier for the type (e.g., `mammal`).
 - `name` (string, required): The display name of the type (e.g., `Mammal`).
-- `effective_against` (list of strings, optional): A list of type IDs that this type is strong against.
-- `ineffective_against` (list of strings, optional): A list of type IDs that this type is weak against.
-- `immune_against` (list of strings, optional): A list of type IDs that this type is immune to.
+- `effectiveness` (object, optional): maps types to effectiveness values (effective, ineffective or immune)
 
 **Example:**
 
 ```yaml
-- id: fire
-  name: Fire
-  effective_against:
-    - grass
-    - ice
-  ineffective_against:
-    - water
-    - rock
-  immune_against: []
+- id: electric
+  name: Electric
+  effectiveness:
+    - water: effective
+    - grass: ineffective
+    - ground: immune
 ```
+
