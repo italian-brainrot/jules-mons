@@ -11,10 +11,10 @@ Creatures are the main entities in the game that players will collect and battle
 - `description` (string, required): A brief description of the creature.
 - `types` (list of strings, required): A list of type IDs that the creature belongs to (e.g., `['mammal', 'carnivore']`).
 - `base_stats` (object, required): The base statistics of the creature.
-  - `hp` (float, required): The base health points.
-  - `hp_regen` (float, required): The base health points regenerated per second.
-  - `st` (float, required): The base stamina.
-  - `st_regen` (float, required): The base stamina regenerated per second.
+  - `HP` (float, required): The base health points.
+  - `HP_regen` (float, required): The base health points regenerated per second.
+  - `ST` (float, required): The base stamina.
+  - `ST_regen` (float, required): The base stamina regenerated per second.
   - `attack` (float, required): The base attack power.
   - `defense` (float, required): The base defense power.
   - `speed` (float, required): The base speed.
@@ -32,10 +32,10 @@ Creatures are the main entities in the game that players will collect and battle
     - mammal
     - carnivore
   base_stats:
-    hp: 100
-    hp_regen: 0.5
-    st: 100
-    st_regen: 5
+    HP: 100
+    HP_regen: 0.5
+    ST: 100
+    ST_regen: 5
     attack: 90
     defense: 70
     speed: 100
@@ -74,7 +74,7 @@ Moves are the actions that creatures can perform in battle.
   penetration: 10
   accuracy: 100
   cost:
-    st: 25
+    ST: 25
   cooldown: 5
 ```
 
